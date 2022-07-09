@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{ 
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+img {
+    width: 100%;
+    
+}
+div {
+    position: absolute;
+}
+p {
+    text-align: center;
+    color: blue;
+}
+</style>
+<body>
+    <script>
+        /*Создать конструктор объекта “Карточка” с передачей в него картинки и текста. 
+        Реализовать внутри него 2 метода, с помощью которых можно будет менять размер 
+        и положение карточки на экране:*/
+
+        function ShowImages(imgN, txt) {
+
+        this.el = document.createElement('div');
+        document.body.append(this.el);
+
+        let image = document.createElement('img');
+        image.src = imgN;
+        this.el.append(image);
+
+        let txt1 = document.createElement('p');
+        txt1.innerHTML = txt;
+        this.el.append(txt1);
+
+        Object.defineProperties(this, {
+                width: {                    
+                    set: function(val) {                        
+                        this._width = val;
+                        this.el.style.width = this._width;
+                    }
+                },                
+                positionX: {
+                    set: function(value) {
+                        this._positionX = value;                        
+                        this.el.style.left = this._positionX;                        
+                    }
+                },
+                positionY: {
+                    set: function(value) {
+                        this._positionY = value;                        
+                        this.el.style.top = this._positionY;                        
+                    }
+                },
+
+            });
+ 
+};
+
+        let card1 = new ShowImages('img/img1.jpg', 'Зима');
+        card1.width = '150px';
+        card1.positionX = '100px';
+        card1.positionY = '50px';
+
+        let card2 = new ShowImages('img/img2.jpg', 'Лето');
+        card2.width = '250px';
+        card2.positionX = '450px';
+        card2.positionY = '200px';
+
+        let card3 = new ShowImages('img/img3.jfif', 'Осень');
+        card3.width = '350px';
+        card3.positionX = '800px';
+        card3.positionY = '300px';
+
+
+    </script>
+</body>
+</html>
